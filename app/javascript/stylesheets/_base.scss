@@ -1,5 +1,11 @@
 body {
-  background-color: #eeeeee;
+  background-color: #F2DFCE;
 }
 
+.project-card {
+  transition: background-color 0.5s ease;
+  &:hover {
+    background-color: #f7f7f7;
+  }
+}
 
