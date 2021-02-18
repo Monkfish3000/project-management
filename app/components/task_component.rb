@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 class TaskComponent < ViewComponent::Base
+  extend Forwardable
+
+  delegate [:status, :id, :project, :name, :description, :persisted?] => :@task
+
 attr_reader :task
 
   def initialize(task:)
@@ -7,11 +11,7 @@ attr_reader :task
   end
 
   def render?
-    task.persisted?
-  end
-
-  def status
-    task.status
+    persisted?
   end
 
   def color_class
@@ -25,21 +25,7 @@ attr_reader :task
     end
   end
 
-
   def task_id
-    task.id
+    id
   end
-
-  def project
-    task.project
-  end
-
-  def name
-    task.name
-  end
-
-  def description
-    task.description
-  end
-
 end
